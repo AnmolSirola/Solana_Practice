@@ -1,12 +1,15 @@
+
 // Define the type of state stored in the accounts
+
 use borsh::{BorshDeserialize, BorshSerialize};
+
 use solana_program::{
-    account_info::{next_account_info, AccountInfo},
-    entrypoint,
-    entrypoint::ProgramResult,
-    msg,
+    account_info::{next_account_info, AccountInfo}, //A struct within the account_info module that allows us to access account information
+    entrypoint, // A macro that declares the entry point of the program
+    entrypoint::ProgramResult, //a type within the entrypoint module that returns either a Result or ProgramError
+    msg, // a macro that allows us to print messages to the program log
     program_error::ProgramError,
-    pubkey::Pubkey,
+    pubkey::Pubkey, // a struct within the pubkey module that allows us to access addresses as a public key
 };
 
 /// Define the type of state stored in accounts
@@ -20,10 +23,12 @@ pub struct GreetingAccount {
 entrypoint!(process_instruction);
 
 // Program entrypoint's implementation
+
 pub fn process_instruction(
     program_id: &Pubkey, // Public key of the account the hello world program was loaded into
     accounts: &[AccountInfo], // The account to say hello to
     _instruction_data: &[u8], // Ignored, all helloworld instructions are hellos
+
 ) -> ProgramResult {
     msg!("Hello World Rust program entrypoint");
 
